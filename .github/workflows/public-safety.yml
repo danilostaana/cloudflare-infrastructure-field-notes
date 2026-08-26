@@ -1,0 +1,21 @@
+name: Public Safety Check
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  pre-public-check:
+    name: Check repository for common sensitive files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run pre-publication safety check
+        shell: bash
+        run: bash scripts/pre-public-check.sh
